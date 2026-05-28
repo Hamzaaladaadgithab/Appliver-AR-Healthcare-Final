@@ -16,22 +16,22 @@ public class AppUIStructureBuilder : Editor
             canvasGO = new GameObject("AppScreensCanvas");
             Undo.RegisterCreatedObjectUndo(canvasGO, "Create AppScreensCanvas");
         }
-        
+
         Canvas canvas = canvasGO.GetComponent<Canvas>();
         if (canvas == null) canvas = canvasGO.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.sortingOrder = 50; // Mevcut AR arayüzünün üzerinde durması için
-        
+
         CanvasScaler scaler = canvasGO.GetComponent<CanvasScaler>();
         if (scaler == null) scaler = canvasGO.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1080, 1920);
         scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
         scaler.matchWidthOrHeight = 0.5f; // Portrait mobil düzen için dengeli ölçeklendirme
-        
+
         if (canvasGO.GetComponent<GraphicRaycaster>() == null)
             canvasGO.AddComponent<GraphicRaycaster>();
-            
+
         // AppNavigationManager betiğini Canvas'a bağla
         AppNavigationManager navManager = canvasGO.GetComponent<AppNavigationManager>();
         if (navManager == null)
@@ -119,8 +119,8 @@ public class AppUIStructureBuilder : Editor
             new Color32(226, 232, 240, 255)); // Slate 200
 
         // Başla Butonu (TAKİBE BAŞLA)
-        CreateButton(splashScreen, "BaslaButonu", "TAKİBE BAŞLA", 
-            new Vector2(0.5f, 0.20f), new Vector2(0.5f, 0.20f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(splashScreen, "BaslaButonu", "TAKİBE BAŞLA",
+            new Vector2(0.5f, 0.20f), new Vector2(0.5f, 0.20f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(550, 120), new Color32(14, 165, 233, 255)); // Modern Medikal Mavi
 
         EditorUtility.SetDirty(splashScreen);
@@ -167,31 +167,31 @@ public class AppUIStructureBuilder : Editor
             new Color32(0, 245, 196, 255));
 
         // Kart 1: Nakil Süreci (Y-anchor: 0.64 to 0.79)
-        CreateCardWithTitleAndText(patientInfo, "NakilKarti", "1. Nakil Süreci", 
-            "Hamza, yakın zamanda başarılı bir karaciğer nakli operasyonu geçirdi. Yeni organının sağlıklı çalışması günlük bakımına bağlıdır.", 
-            new Vector2(0.08f, 0.64f), new Vector2(0.92f, 0.79f), 
+        CreateCardWithTitleAndText(patientInfo, "NakilKarti", "1. Nakil Süreci",
+            "Hamza, yakın zamanda başarılı bir karaciğer nakli operasyonu geçirdi. Yeni organının sağlıklı çalışması günlük bakımına bağlıdır.",
+            new Vector2(0.08f, 0.64f), new Vector2(0.92f, 0.79f),
             new Color32(0, 245, 196, 255)); // Mint Green
 
         // Kart 2: İlaç Takibi (Y-anchor: 0.47 to 0.62)
-        CreateCardWithTitleAndText(patientInfo, "TakipKarti", "2. İlaç Takibi", 
-            "Bağışıklık sisteminin yeni karaciğeri reddetmemesi için koruyucu ilaçların her gün tam zamanında ve eksiksiz alınması kritik önem taşır.", 
-            new Vector2(0.08f, 0.47f), new Vector2(0.92f, 0.62f), 
+        CreateCardWithTitleAndText(patientInfo, "TakipKarti", "2. İlaç Takibi",
+            "Bağışıklık sisteminin yeni karaciğeri reddetmemesi için koruyucu ilaçların her gün tam zamanında ve eksiksiz alınması kritik önem taşır.",
+            new Vector2(0.08f, 0.47f), new Vector2(0.92f, 0.62f),
             new Color32(0, 245, 196, 255)); // Mint Green
 
         // Kart 3: Organ Reddi Riski (Y-anchor: 0.30 to 0.45)
-        CreateCardWithTitleAndText(patientInfo, "RiskKarti", "3. Organ Reddi Riski", 
-            "İlaç dozlarının kaçırılması veya geciktirilmesi organ reddi reaksiyonunu tetikleyebilir. Bu durum hayati tehlike oluşturur!", 
-            new Vector2(0.08f, 0.30f), new Vector2(0.92f, 0.45f), 
+        CreateCardWithTitleAndText(patientInfo, "RiskKarti", "3. Organ Reddi Riski",
+            "İlaç dozlarının kaçırılması veya geciktirilmesi organ reddi reaksiyonunu tetikleyebilir. Bu durum hayati tehlike oluşturur!",
+            new Vector2(0.08f, 0.30f), new Vector2(0.92f, 0.45f),
             new Color32(239, 68, 68, 255)); // Vivid Red
 
         // Replay Butonu (SpeakerButton) - Shifted to Y: 0.24, Size: 380x75
-        CreateButton(patientInfo, "SpeakerButton", "🔊 Dinle", 
-            new Vector2(0.5f, 0.24f), new Vector2(0.5f, 0.24f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(patientInfo, "SpeakerButton", "🔊 Dinle",
+            new Vector2(0.5f, 0.24f), new Vector2(0.5f, 0.24f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(380, 75), new Color32(71, 85, 105, 255)); // Koyu Slate
 
         // İleri Butonu (DashboardButonu) - Shifted to Y: 0.15, Size: 580x100
-        CreateButton(patientInfo, "DashboardButonu", "KONTROL PANELİNE GİT", 
-            new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(patientInfo, "DashboardButonu", "KONTROL PANELİNE GİT",
+            new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(580, 100), new Color32(14, 165, 233, 255)); // Modern Medikal Mavi
 
         // Audio support setup
@@ -200,7 +200,7 @@ public class AppUIStructureBuilder : Editor
         {
             audioController = patientInfo.AddComponent<PatientStoryAudioController>();
         }
-        
+
         AudioSource audioSource = patientInfo.GetComponent<AudioSource>();
         if (audioSource != null)
         {
@@ -346,23 +346,23 @@ public class AppUIStructureBuilder : Editor
             new Color32(0, 245, 196, 255)); // Mint Green
 
         // 1. ARButonu (AR SİMÜLASYON) - Center Y: 0.43, Size: 650x75, Color: Medical Blue (#0EA5E9)
-        CreateButton(dashboardScreen, "ARButonu", "AR SİMÜLASYON", 
-            new Vector2(0.5f, 0.43f), new Vector2(0.5f, 0.43f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(dashboardScreen, "ARButonu", "AR SİMÜLASYON",
+            new Vector2(0.5f, 0.43f), new Vector2(0.5f, 0.43f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(650, 75), new Color32(14, 165, 233, 255)); // Medical Blue
 
         // 2. DailyButonu (GÜNLÜK GÖREVLER) - Center Y: 0.34, Size: 650x75, Color: Emerald Green (#10B981)
-        CreateButton(dashboardScreen, "DailyButonu", "GÜNLÜK GÖREVLER", 
-            new Vector2(0.5f, 0.34f), new Vector2(0.5f, 0.34f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(dashboardScreen, "DailyButonu", "GÜNLÜK GÖREVLER",
+            new Vector2(0.5f, 0.34f), new Vector2(0.5f, 0.34f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(650, 75), new Color32(16, 185, 129, 255)); // Emerald Green
 
         // 3. DoctorHistoryButonu (DOKTOR GEÇMİŞİ) - Center Y: 0.25, Size: 650x75, Color: Slate Gray (#475569)
-        CreateButton(dashboardScreen, "DoctorHistoryButonu", "DOKTOR GEÇMİŞİ", 
-            new Vector2(0.5f, 0.25f), new Vector2(0.5f, 0.25f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(dashboardScreen, "DoctorHistoryButonu", "DOKTOR GEÇMİŞİ",
+            new Vector2(0.5f, 0.25f), new Vector2(0.5f, 0.25f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(650, 75), new Color32(71, 85, 105, 255)); // Slate Gray
 
         // 4. HikayeButonu (HİKAYEYİ TEKRAR OKU) - Center Y: 0.16, Size: 650x75, Color: Purple / Indigo (#6366F1)
-        CreateButton(dashboardScreen, "HikayeButonu", "HİKAYEYİ TEKRAR OKU", 
-            new Vector2(0.5f, 0.16f), new Vector2(0.5f, 0.16f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(dashboardScreen, "HikayeButonu", "HİKAYEYİ TEKRAR OKU",
+            new Vector2(0.5f, 0.16f), new Vector2(0.5f, 0.16f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(650, 75), new Color32(99, 102, 241, 255)); // Purple / Indigo
 
         EditorUtility.SetDirty(dashboardScreen);
@@ -486,8 +486,8 @@ public class AppUIStructureBuilder : Editor
         fillRect.offsetMax = Vector2.zero;
 
         // Geri Butonu (GeriButonu) - Shifted Y to 0.18 for better visibility, Size: 500x90, Azure Blue (#0EA5E9)
-        CreateButton(dailyCareScreen, "GeriButonu", "GERİ", 
-            new Vector2(0.5f, 0.18f), new Vector2(0.5f, 0.18f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(dailyCareScreen, "GeriButonu", "GERİ",
+            new Vector2(0.5f, 0.18f), new Vector2(0.5f, 0.18f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(500, 90), new Color32(14, 165, 233, 255));
 
         // 5. Setup controller and assign references
@@ -604,8 +604,6 @@ public class AppUIStructureBuilder : Editor
 
         // Metin elemanlarını tespit et
         Text bildirimText = scenarioManager != null ? scenarioManager.bildirimText : (FindComponentInCanvas<Text>(gameplayCanvas, "bildirimText") ?? FindComponentInCanvas<Text>(gameplayCanvas, "BildirimText"));
-        TextMeshProUGUI senaryoText = scenarioManager != null ? scenarioManager.senaryoText : (FindComponentInCanvas<TextMeshProUGUI>(gameplayCanvas, "senaryoText") ?? FindComponentInCanvas<TextMeshProUGUI>(gameplayCanvas, "SenaryoText"));
-        TextMeshProUGUI riskText = scenarioManager != null ? scenarioManager.riskText : (FindComponentInCanvas<TextMeshProUGUI>(gameplayCanvas, "riskText") ?? FindComponentInCanvas<TextMeshProUGUI>(gameplayCanvas, "RiskText"));
         TextMeshProUGUI gecmisText = scenarioManager != null ? scenarioManager.gecmisText : (FindComponentInCanvas<TextMeshProUGUI>(gameplayCanvas, "gecmisText") ?? FindComponentInCanvas<TextMeshProUGUI>(gameplayCanvas, "GecmisText"));
 
         // Karar butonlarını tespit et
@@ -621,8 +619,6 @@ public class AppUIStructureBuilder : Editor
         if (kararPanel != null) referencedObjects.Add(kararPanel);
         if (bildirimPanel != null) referencedObjects.Add(bildirimPanel);
         if (bildirimText != null) referencedObjects.Add(bildirimText.gameObject);
-        if (senaryoText != null) referencedObjects.Add(senaryoText.gameObject);
-        if (riskText != null) referencedObjects.Add(riskText.gameObject);
         if (gecmisText != null) referencedObjects.Add(gecmisText.gameObject);
         if (butonA != null) referencedObjects.Add(butonA.gameObject);
         if (butonB != null) referencedObjects.Add(butonB.gameObject);
@@ -630,14 +626,14 @@ public class AppUIStructureBuilder : Editor
         if (dogruText != null) referencedObjects.Add(dogruText.gameObject);
         if (yanlisText != null) referencedObjects.Add(yanlisText.gameObject);
 
-        GameObject scorePanel = FindObjectInCanvas(gameplayCanvas, "SkorPanel") 
-            ?? FindObjectInCanvas(gameplayCanvas, "skorPanel") 
+        GameObject scorePanel = FindObjectInCanvas(gameplayCanvas, "SkorPanel")
+            ?? FindObjectInCanvas(gameplayCanvas, "skorPanel")
             ?? FindObjectInCanvas(gameplayCanvas, "SkorPanel ");
         if (scorePanel != null) referencedObjects.Add(scorePanel);
 
         // Gereksiz objeleri sil (New Text, mavi dikdörtgenler, gri arka planlar vb.)
         CleanTargetedUselessObjects(gameplayCanvas.transform, referencedObjects);
-        
+
         // Remove ONLY static instruction UI
         GameObject appScreensCanvas = GameObject.Find("AppScreensCanvas");
         if (appScreensCanvas != null)
@@ -680,7 +676,7 @@ public class AppUIStructureBuilder : Editor
         ReorganizeNotificationPanel(bildirimPanel, bildirimText, gameplayCanvas.gameObject);
 
         // 7. Karar/Senaryo Panelini alt-orta bölüme konumlandır (Width: 1600, Height: 420)
-        ReorganizeDecisionPanel(kararPanel, senaryoText, riskText, gecmisText);
+        ReorganizeDecisionPanel(kararPanel, gecmisText);
 
         // 8. Karar butonlarını KararPanel'in içerisine dikey yerleşim çakışması olmadan yerleştir (Size: 550x90, horizontal)
         ReorganizeDecisionButtons(kararPanel, butonA, butonB);
@@ -701,8 +697,6 @@ public class AppUIStructureBuilder : Editor
             if (scenarioManager.bildirimPanel == null) scenarioManager.bildirimPanel = bildirimPanel;
             if (scenarioManager.bildirimText == null) scenarioManager.bildirimText = bildirimText;
             if (scenarioManager.kararPanel == null) scenarioManager.kararPanel = kararPanel;
-            if (scenarioManager.senaryoText == null) scenarioManager.senaryoText = senaryoText;
-            if (scenarioManager.riskText == null) scenarioManager.riskText = riskText;
             if (scenarioManager.gecmisText == null) scenarioManager.gecmisText = gecmisText;
             if (scenarioManager.butonA == null) scenarioManager.butonA = butonA;
             if (scenarioManager.butonB == null) scenarioManager.butonB = butonB;
@@ -711,7 +705,7 @@ public class AppUIStructureBuilder : Editor
 
         EditorUtility.SetDirty(gameplayCanvas);
         if (gameManager != null) EditorUtility.SetDirty(gameManager);
-        
+
         Debug.Log("Apply Clean AR UI Layout completed successfully! All Canvas, Panel, and Button parameters have been aligned with the target reference design.");
     }
 
@@ -744,14 +738,14 @@ public class AppUIStructureBuilder : Editor
         for (int i = parent.childCount - 1; i >= 0; i--)
         {
             Transform child = parent.GetChild(i);
-            
+
             // Eğer script referansı olan bir obje ise koru ve çocuklarını tara
             if (referenced.Contains(child.gameObject))
             {
                 CleanTargetedUselessObjects(child, referenced);
                 continue;
             }
-            
+
             string lowercaseName = child.name.ToLower();
             bool shouldDelete = false;
 
@@ -769,9 +763,9 @@ public class AppUIStructureBuilder : Editor
             else if (lowercaseName.Contains("gray") || lowercaseName.Contains("grey") || lowercaseName.Contains("panel") || lowercaseName.Contains("background") || lowercaseName.Contains("overlay") || lowercaseName.Contains("gri") || lowercaseName.Contains("gorsel") || lowercaseName.Contains("image") || child.GetComponent<Image>() != null)
             {
                 // Karar, bildirim, score veya dön butonları değilse sil
-                if (child.name != "kararPanel" && child.name != "KararPanel" && 
-                    child.name != "bildirimPanel" && child.name != "BildirimPanel" && 
-                    child.name != "AnaPaneleDonButonu" && 
+                if (child.name != "kararPanel" && child.name != "KararPanel" &&
+                    child.name != "bildirimPanel" && child.name != "BildirimPanel" &&
+                    child.name != "AnaPaneleDonButonu" &&
                     child.name != "SkorPanel" && child.name != "skorPanel" && child.name != "SkorPanel ")
                 {
                     shouldDelete = true;
@@ -802,7 +796,7 @@ public class AppUIStructureBuilder : Editor
                 Debug.Log("Appliver Cleanup - Disabled top Text instruction GameObject: " + t.gameObject.name);
             }
         }
-        
+
         TextMeshProUGUI[] tmps = canvas.GetComponentsInChildren<TextMeshProUGUI>(true);
         foreach (TextMeshProUGUI tmp in tmps)
         {
@@ -818,8 +812,8 @@ public class AppUIStructureBuilder : Editor
     private static void ReorganizeScorePanel(GameObject canvas, ref Text skor, ref Text dogru, ref Text yanlis, ScoreManager scoreManager)
     {
         // 1. Sahnede var olan SkorPanel'i tespit et veya oluştur
-        GameObject scorePanel = FindObjectInCanvas(canvas.GetComponent<Canvas>(), "SkorPanel") 
-            ?? FindObjectInCanvas(canvas.GetComponent<Canvas>(), "skorPanel") 
+        GameObject scorePanel = FindObjectInCanvas(canvas.GetComponent<Canvas>(), "SkorPanel")
+            ?? FindObjectInCanvas(canvas.GetComponent<Canvas>(), "skorPanel")
             ?? FindObjectInCanvas(canvas.GetComponent<Canvas>(), "SkorPanel ");
 
         if (scorePanel == null)
@@ -832,7 +826,7 @@ public class AppUIStructureBuilder : Editor
 
         RectTransform pRect = scorePanel.GetComponent<RectTransform>();
         if (pRect == null) pRect = scorePanel.AddComponent<RectTransform>();
-        
+
         LayoutGroup lg = scorePanel.GetComponent<LayoutGroup>();
         if (lg != null) DestroyImmediate(lg);
 
@@ -883,7 +877,7 @@ public class AppUIStructureBuilder : Editor
             rSkor.pivot = new Vector2(0.5f, 0.5f);
             rSkor.anchoredPosition = Vector2.zero;
             rSkor.sizeDelta = Vector2.zero;
-            
+
             skor.horizontalOverflow = HorizontalWrapMode.Overflow;
             skor.verticalOverflow = VerticalWrapMode.Overflow;
             skor.alignment = TextAnchor.MiddleCenter;
@@ -905,7 +899,7 @@ public class AppUIStructureBuilder : Editor
             rDogru.pivot = new Vector2(0.5f, 0.5f);
             rDogru.anchoredPosition = Vector2.zero;
             rDogru.sizeDelta = Vector2.zero;
-            
+
             dogru.horizontalOverflow = HorizontalWrapMode.Overflow;
             dogru.verticalOverflow = VerticalWrapMode.Overflow;
             dogru.alignment = TextAnchor.MiddleCenter;
@@ -927,7 +921,7 @@ public class AppUIStructureBuilder : Editor
             rYanlis.pivot = new Vector2(0.5f, 0.5f);
             rYanlis.anchoredPosition = Vector2.zero;
             rYanlis.sizeDelta = Vector2.zero;
-            
+
             yanlis.horizontalOverflow = HorizontalWrapMode.Overflow;
             yanlis.verticalOverflow = VerticalWrapMode.Overflow;
             yanlis.alignment = TextAnchor.MiddleCenter;
@@ -972,18 +966,18 @@ public class AppUIStructureBuilder : Editor
             tr.anchorMax = Vector2.one;
             tr.offsetMin = new Vector2(20f, 10f);
             tr.offsetMax = new Vector2(-20f, -10f);
-            
+
             txt.horizontalOverflow = HorizontalWrapMode.Overflow;
             txt.verticalOverflow = VerticalWrapMode.Overflow;
             txt.alignment = TextAnchor.MiddleCenter;
-            txt.fontSize = 30; 
+            txt.fontSize = 30;
             txt.color = Color.white;
             txt.transform.localScale = Vector3.one;
             txt.transform.localRotation = Quaternion.identity;
         }
     }
 
-    private static void ReorganizeDecisionPanel(GameObject panel, TextMeshProUGUI senaryo, TextMeshProUGUI risk, TextMeshProUGUI gecmis)
+    private static void ReorganizeDecisionPanel(GameObject panel, TextMeshProUGUI gecmis)
     {
         if (panel == null) return;
 
@@ -1001,44 +995,6 @@ public class AppUIStructureBuilder : Editor
         if (img == null) img = panel.AddComponent<Image>();
         img.color = new Color32(15, 23, 42, 220); // Semi-transparent slate 900
 
-        // Senaryo Yazısı (Üst bölge)
-        if (senaryo != null)
-        {
-            senaryo.transform.SetParent(panel.transform, false);
-            RectTransform tr = senaryo.GetComponent<RectTransform>();
-            tr.anchorMin = new Vector2(0.05f, 0.78f);
-            tr.anchorMax = new Vector2(0.95f, 0.94f);
-            tr.pivot = new Vector2(0.5f, 1f);
-            tr.anchoredPosition = Vector2.zero;
-            tr.sizeDelta = Vector2.zero;
-            
-            senaryo.alignment = TextAlignmentOptions.Center;
-            senaryo.fontSize = 34; 
-            senaryo.color = Color.white;
-            senaryo.fontStyle = FontStyles.Bold;
-            senaryo.transform.localScale = Vector3.one;
-            senaryo.transform.localRotation = Quaternion.identity;
-        }
-
-        // Risk Yazısı (Orta bölge)
-        if (risk != null)
-        {
-            risk.transform.SetParent(panel.transform, false);
-            RectTransform tr = risk.GetComponent<RectTransform>();
-            tr.anchorMin = new Vector2(0.05f, 0.52f);
-            tr.anchorMax = new Vector2(0.95f, 0.70f);
-            tr.pivot = new Vector2(0.5f, 0.5f);
-            tr.anchoredPosition = Vector2.zero;
-            tr.sizeDelta = Vector2.zero;
-            
-            risk.alignment = TextAlignmentOptions.Center;
-            risk.fontSize = 28; 
-            risk.color = new Color32(255, 107, 107, 255); // Kırmızı
-            risk.fontStyle = FontStyles.Bold;
-            risk.transform.localScale = Vector3.one;
-            risk.transform.localRotation = Quaternion.identity;
-        }
-
         // İlaç Geçmişi Yazısı (Alt-orta bölge)
         if (gecmis != null)
         {
@@ -1049,9 +1005,9 @@ public class AppUIStructureBuilder : Editor
             tr.pivot = new Vector2(0.5f, 0f);
             tr.anchoredPosition = Vector2.zero;
             tr.sizeDelta = Vector2.zero;
-            
+
             gecmis.alignment = TextAlignmentOptions.Center;
-            gecmis.fontSize = 24; 
+            gecmis.fontSize = 24;
             gecmis.color = new Color32(148, 163, 184, 255); // Slate 400
             gecmis.transform.localScale = Vector3.one;
             gecmis.transform.localRotation = Quaternion.identity;
@@ -1140,7 +1096,7 @@ public class AppUIStructureBuilder : Editor
 
         TextMeshProUGUI tmp = txtGO.AddComponent<TextMeshProUGUI>();
         tmp.text = "Ana Panele Dön";
-        tmp.fontSize = 24; 
+        tmp.fontSize = 24;
         tmp.alignment = TextAlignmentOptions.Center;
         tmp.color = Color.white;
         tmp.fontStyle = FontStyles.Bold;
@@ -1155,12 +1111,12 @@ public class AppUIStructureBuilder : Editor
         if (t != null)
         {
             t.text = label;
-            t.fontSize = 30; 
+            t.fontSize = 30;
             t.alignment = TextAnchor.MiddleCenter;
             t.color = Color.white;
             t.horizontalOverflow = HorizontalWrapMode.Overflow;
             t.verticalOverflow = VerticalWrapMode.Overflow;
-            
+
             RectTransform tr = t.GetComponent<RectTransform>();
             tr.anchorMin = Vector2.zero;
             tr.anchorMax = Vector2.one;
@@ -1173,11 +1129,11 @@ public class AppUIStructureBuilder : Editor
         if (tmp != null)
         {
             tmp.text = label;
-            tmp.fontSize = 30; 
+            tmp.fontSize = 30;
             tmp.alignment = TextAlignmentOptions.Center;
             tmp.color = Color.white;
             tmp.fontStyle = FontStyles.Bold;
-            
+
             RectTransform tr = tmp.GetComponent<RectTransform>();
             tr.anchorMin = Vector2.zero;
             tr.anchorMax = Vector2.one;
@@ -1196,22 +1152,22 @@ public class AppUIStructureBuilder : Editor
         {
             DestroyImmediate(existing.gameObject);
         }
-        
+
         GameObject panelGO = new GameObject(name);
         panelGO.transform.SetParent(parent.transform, false);
-        
+
         RectTransform rect = panelGO.AddComponent<RectTransform>();
         rect.anchorMin = Vector2.zero;
         rect.anchorMax = Vector2.one;
         rect.offsetMin = Vector2.zero;
         rect.offsetMax = Vector2.zero;
-        
+
         if (bgColor.a > 0)
         {
             Image img = panelGO.AddComponent<Image>();
             img.color = bgColor;
         }
-        
+
         return panelGO;
     }
 
@@ -1228,8 +1184,8 @@ public class AppUIStructureBuilder : Editor
             new Color32(148, 163, 184, 255)); // Yumuşak Slate Grisi
 
         // Başla Butonu
-        CreateButton(splash, "BaslaButonu", "TAKİBE BAŞLA", 
-            new Vector2(0.5f, 0.2f), new Vector2(0.5f, 0.2f), new Vector2(0.5f, 0.5f), new Vector2(0, 0), 
+        CreateButton(splash, "BaslaButonu", "TAKİBE BAŞLA",
+            new Vector2(0.5f, 0.2f), new Vector2(0.5f, 0.2f), new Vector2(0.5f, 0.5f), new Vector2(0, 0),
             new Vector2(500, 120), new Color32(2, 132, 199, 255)); // Koyu Mavi
     }
 
@@ -1241,31 +1197,31 @@ public class AppUIStructureBuilder : Editor
             new Color32(0, 245, 196, 255));
 
         // Kart 1: Nakil Süreci (Y-anchor: 0.64 to 0.79)
-        CreateCardWithTitleAndText(patientInfo, "NakilKarti", "1. Nakil Süreci", 
-            "Hamza, yakın zamanda başarılı bir karaciğer nakli operasyonu geçirdi. Yeni organının sağlıklı çalışması günlük bakımına bağlıdır.", 
-            new Vector2(0.08f, 0.64f), new Vector2(0.92f, 0.79f), 
+        CreateCardWithTitleAndText(patientInfo, "NakilKarti", "1. Nakil Süreci",
+            "Hamza, yakın zamanda başarılı bir karaciğer nakli operasyonu geçirdi. Yeni organının sağlıklı çalışması günlük bakımına bağlıdır.",
+            new Vector2(0.08f, 0.64f), new Vector2(0.92f, 0.79f),
             new Color32(0, 245, 196, 255)); // Mint Green
 
         // Kart 2: İlaç Takibi (Y-anchor: 0.47 to 0.62)
-        CreateCardWithTitleAndText(patientInfo, "TakipKarti", "2. İlaç Takibi", 
-            "Bağışıklık sisteminin yeni karaciğeri reddetmemesi için koruyucu ilaçların her gün tam zamanında ve eksiksiz alınması kritik önem taşır.", 
-            new Vector2(0.08f, 0.47f), new Vector2(0.92f, 0.62f), 
+        CreateCardWithTitleAndText(patientInfo, "TakipKarti", "2. İlaç Takibi",
+            "Bağışıklık sisteminin yeni karaciğeri reddetmemesi için koruyucu ilaçların her gün tam zamanında ve eksiksiz alınması kritik önem taşır.",
+            new Vector2(0.08f, 0.47f), new Vector2(0.92f, 0.62f),
             new Color32(0, 245, 196, 255)); // Mint Green
 
         // Kart 3: Organ Reddi Riski (Y-anchor: 0.30 to 0.45)
-        CreateCardWithTitleAndText(patientInfo, "RiskKarti", "3. Organ Reddi Riski", 
-            "İlaç dozlarının kaçırılması veya geciktirilmesi organ reddi reaksiyonunu tetikleyebilir. Bu durum hayati tehlike oluşturur!", 
-            new Vector2(0.08f, 0.30f), new Vector2(0.92f, 0.45f), 
+        CreateCardWithTitleAndText(patientInfo, "RiskKarti", "3. Organ Reddi Riski",
+            "İlaç dozlarının kaçırılması veya geciktirilmesi organ reddi reaksiyonunu tetikleyebilir. Bu durum hayati tehlike oluşturur!",
+            new Vector2(0.08f, 0.30f), new Vector2(0.92f, 0.45f),
             new Color32(239, 68, 68, 255)); // Vivid Red
 
         // Replay Butonu (SpeakerButton) - Shifted to Y: 0.24, Size: 380x75
-        CreateButton(patientInfo, "SpeakerButton", "🔊 Dinle", 
-            new Vector2(0.5f, 0.24f), new Vector2(0.5f, 0.24f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(patientInfo, "SpeakerButton", "🔊 Dinle",
+            new Vector2(0.5f, 0.24f), new Vector2(0.5f, 0.24f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(380, 75), new Color32(71, 85, 105, 255)); // Koyu Slate
 
         // İleri Butonu (DashboardButonu) - Shifted to Y: 0.15, Size: 580x100
-        CreateButton(patientInfo, "DashboardButonu", "KONTROL PANELİNE GİT", 
-            new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(patientInfo, "DashboardButonu", "KONTROL PANELİNE GİT",
+            new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(580, 100), new Color32(14, 165, 233, 255)); // Modern Medikal Mavi
 
         // Audio support setup
@@ -1274,7 +1230,7 @@ public class AppUIStructureBuilder : Editor
         {
             audioController = patientInfo.AddComponent<PatientStoryAudioController>();
         }
-        
+
         AudioSource audioSource = patientInfo.GetComponent<AudioSource>();
         if (audioSource != null)
         {
@@ -1347,23 +1303,23 @@ public class AppUIStructureBuilder : Editor
             new Color32(0, 245, 196, 255)); // Mint Green
 
         // 1. ARButonu (AR SİMÜLASYON) - Center Y: 0.43, Size: 650x75, Color: Medical Blue (#0EA5E9)
-        CreateButton(dashboard, "ARButonu", "AR SİMÜLASYON", 
-            new Vector2(0.5f, 0.43f), new Vector2(0.5f, 0.43f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(dashboard, "ARButonu", "AR SİMÜLASYON",
+            new Vector2(0.5f, 0.43f), new Vector2(0.5f, 0.43f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(650, 75), new Color32(14, 165, 233, 255)); // Medical Blue
 
         // 2. DailyButonu (GÜNLÜK GÖREVLER) - Center Y: 0.34, Size: 650x75, Color: Emerald Green (#10B981)
-        CreateButton(dashboard, "DailyButonu", "GÜNLÜK GÖREVLER", 
-            new Vector2(0.5f, 0.34f), new Vector2(0.5f, 0.34f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(dashboard, "DailyButonu", "GÜNLÜK GÖREVLER",
+            new Vector2(0.5f, 0.34f), new Vector2(0.5f, 0.34f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(650, 75), new Color32(16, 185, 129, 255)); // Emerald Green
 
         // 3. DoctorHistoryButonu (DOKTOR GEÇMİŞİ) - Center Y: 0.25, Size: 650x75, Color: Slate Gray (#475569)
-        CreateButton(dashboard, "DoctorHistoryButonu", "DOKTOR GEÇMİŞİ", 
-            new Vector2(0.5f, 0.25f), new Vector2(0.5f, 0.25f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(dashboard, "DoctorHistoryButonu", "DOKTOR GEÇMİŞİ",
+            new Vector2(0.5f, 0.25f), new Vector2(0.5f, 0.25f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(650, 75), new Color32(71, 85, 105, 255)); // Slate Gray
 
         // 4. HikayeButonu (HİKAYEYİ TEKRAR OKU) - Center Y: 0.16, Size: 650x75, Color: Purple / Indigo (#6366F1)
-        CreateButton(dashboard, "HikayeButonu", "HİKAYEYİ TEKRAR OKU", 
-            new Vector2(0.5f, 0.16f), new Vector2(0.5f, 0.16f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(dashboard, "HikayeButonu", "HİKAYEYİ TEKRAR OKU",
+            new Vector2(0.5f, 0.16f), new Vector2(0.5f, 0.16f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(650, 75), new Color32(99, 102, 241, 255)); // Purple / Indigo
     }
 
@@ -1382,8 +1338,8 @@ public class AppUIStructureBuilder : Editor
             Color.white);
 
         // Geri Dön Butonu (Ekranın sol üstünde asılı durur)
-        CreateButton(arSim, "GeriButonu", "GERİ DÖN", 
-            new Vector2(0.5f, 0.08f), new Vector2(0.5f, 0.08f), new Vector2(0.5f, 0.5f), new Vector2(0, 0), 
+        CreateButton(arSim, "GeriButonu", "GERİ DÖN",
+            new Vector2(0.5f, 0.08f), new Vector2(0.5f, 0.08f), new Vector2(0.5f, 0.5f), new Vector2(0, 0),
             new Vector2(400, 100), new Color32(239, 68, 68, 255)); // Yumuşak Kırmızı
     }
 
@@ -1477,8 +1433,8 @@ public class AppUIStructureBuilder : Editor
         fillRect.offsetMax = Vector2.zero;
 
         // Geri Butonu (GeriButonu) - Shifted Y to 0.18 for better visibility, Size: 500x90, Azure Blue (#0EA5E9)
-        CreateButton(dailyCare, "GeriButonu", "GERİ", 
-            new Vector2(0.5f, 0.18f), new Vector2(0.5f, 0.18f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(dailyCare, "GeriButonu", "GERİ",
+            new Vector2(0.5f, 0.18f), new Vector2(0.5f, 0.18f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(500, 90), new Color32(14, 165, 233, 255));
 
         // 5. Setup controller and assign references
@@ -1503,14 +1459,14 @@ public class AppUIStructureBuilder : Editor
     {
         GameObject textGO = new GameObject(name);
         textGO.transform.SetParent(parent.transform, false);
-        
+
         RectTransform rect = textGO.AddComponent<RectTransform>();
         rect.anchorMin = anchorMin;
         rect.anchorMax = anchorMax;
         rect.pivot = pivot;
         rect.anchoredPosition = anchoredPos;
         rect.sizeDelta = Vector2.zero; // Stretch modda sıfır yap
-        
+
         TextMeshProUGUI tmp = textGO.AddComponent<TextMeshProUGUI>();
         tmp.text = textContent;
         tmp.fontSize = fontSize;
@@ -1533,7 +1489,7 @@ public class AppUIStructureBuilder : Editor
                 img.type = Image.Type.Sliced;
             }
         }
-        
+
         RectTransform cardRect = card.GetComponent<RectTransform>();
         cardRect.anchorMin = anchorMin;
         cardRect.anchorMax = anchorMax;
@@ -1559,22 +1515,22 @@ public class AppUIStructureBuilder : Editor
         return card;
     }
 
-    private static void CreateButton(GameObject parent, string name, string label, 
+    private static void CreateButton(GameObject parent, string name, string label,
         Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 anchoredPos, Vector2 size, Color32 buttonColor)
     {
         GameObject btnGO = new GameObject(name);
         btnGO.transform.SetParent(parent.transform, false);
-        
+
         RectTransform rect = btnGO.AddComponent<RectTransform>();
         rect.anchorMin = anchorMin;
         rect.anchorMax = anchorMax;
         rect.pivot = pivot;
         rect.anchoredPosition = anchoredPos;
         rect.sizeDelta = size;
-        
+
         Image img = btnGO.AddComponent<Image>();
         img.color = buttonColor;
-        
+
         // Use Unity's built-in rounded UISprite for a modern pill look
         Sprite roundedSprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
         if (roundedSprite != null)
@@ -1582,19 +1538,19 @@ public class AppUIStructureBuilder : Editor
             img.sprite = roundedSprite;
             img.type = Image.Type.Sliced;
         }
-        
+
         Button btn = btnGO.AddComponent<Button>();
-        
+
         // Buton içindeki yazı objesi
         GameObject txtGO = new GameObject("Text");
         txtGO.transform.SetParent(btnGO.transform, false);
-        
+
         RectTransform txtRect = txtGO.AddComponent<RectTransform>();
         txtRect.anchorMin = Vector2.zero;
         txtRect.anchorMax = Vector2.one;
         txtRect.offsetMin = Vector2.zero;
         txtRect.offsetMax = Vector2.zero;
-        
+
         TextMeshProUGUI tmp = txtGO.AddComponent<TextMeshProUGUI>();
         tmp.text = label;
         tmp.fontSize = 28;
@@ -1619,7 +1575,7 @@ public class AppUIStructureBuilder : Editor
         // 1. Row Container
         GameObject rowGO = new GameObject(name);
         rowGO.transform.SetParent(parent.transform, false);
-        
+
         RectTransform rowRect = rowGO.AddComponent<RectTransform>();
         rowRect.anchorMin = anchorMin;
         rowRect.anchorMax = anchorMax;
@@ -1631,7 +1587,7 @@ public class AppUIStructureBuilder : Editor
         // 2. Checkbox Background (The Box)
         GameObject bgGO = new GameObject("Background");
         bgGO.transform.SetParent(rowGO.transform, false);
-        
+
         RectTransform bgRect = bgGO.AddComponent<RectTransform>();
         bgRect.anchorMin = new Vector2(0f, 0.5f);
         bgRect.anchorMax = new Vector2(0f, 0.5f);
@@ -1751,7 +1707,7 @@ public class AppUIStructureBuilder : Editor
             closeImg.type = Image.Type.Sliced;
         }
         closeBtnGO.AddComponent<Button>();
-        
+
         GameObject closeTxtGO = new GameObject("Text");
         closeTxtGO.transform.SetParent(closeBtnGO.transform, false);
         RectTransform closeTxtRect = closeTxtGO.AddComponent<RectTransform>();
@@ -1767,8 +1723,8 @@ public class AppUIStructureBuilder : Editor
         closeTxtTmp.fontStyle = FontStyles.Bold;
 
         // 4. Return Button (GeriButonu)
-        CreateButton(doctorHistory, "GeriButonu", "GERİ", 
-            new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.5f), Vector2.zero, 
+        CreateButton(doctorHistory, "GeriButonu", "GERİ",
+            new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.15f), new Vector2(0.5f, 0.5f), Vector2.zero,
             new Vector2(500, 90), new Color32(14, 165, 233, 255)); // Azure Blue
 
         // 5. Bind DoctorHistoryController

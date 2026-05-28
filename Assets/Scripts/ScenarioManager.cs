@@ -6,7 +6,7 @@ using System.Collections;
 
 // ============================================================
 // ScenarioManager.cs
-// Gercek hasta senaryolari + risk sistemi + ilac gecmisi
+// AR Hasta Takip Sistemi
 // ============================================================
 
 public class ScenarioManager : MonoBehaviour
@@ -17,8 +17,6 @@ public class ScenarioManager : MonoBehaviour
     [Header("UI Referanslari")]
     public Text bildirimText;
 
-    public TextMeshProUGUI senaryoText;
-    public TextMeshProUGUI riskText;
     public TextMeshProUGUI gecmisText;
 
     public GameObject bildirimPanel;
@@ -51,23 +49,9 @@ public class ScenarioManager : MonoBehaviour
 
     private Coroutine aktifFade;
 
-    // =========================================
-    // SISTEMLER
-    // =========================================
-
     int kacirdi = 0;
 
-    string[] senaryolar =
-    {
-        "Derse geç kalýyorsun!",
-        "Arkadaþlarýn dýþarý çaðýrdý!",
-        "Çok yorgunsun!",
-        "Ýlaç saatine 10 dakika kaldý!",
-        "Otobüse yetiþmeye çalýþýyorsun!",
-        "Bugün kontrol randevun var!"
-    };
-
-    // =========================================
+    // ============================================================
 
     void Start()
     {
@@ -77,27 +61,22 @@ public class ScenarioManager : MonoBehaviour
 
         HerSeyleriGizle();
 
-        YeniSenaryo();
-
-        // =====================================
-        // SON ILAC BILGISI YUKLE
-        // =====================================
-
         string kayitliTarih =
             PlayerPrefs.GetString(
                 "SonIlac",
                 "Henüz alýnmadý"
             );
 
-        gecmisText.text =
-            "Son ilaç: " + kayitliTarih;
-
-        // =====================================
+        if (gecmisText != null)
+        {
+            gecmisText.text =
+                "Son ilaç: " + kayitliTarih;
+        }
 
         StartCoroutine(IlacHatirlatmaDongusu());
     }
 
-    // =========================================
+    // ============================================================
 
     void HerSeyleriGizle()
     {
@@ -113,7 +92,7 @@ public class ScenarioManager : MonoBehaviour
         ButonlariAktiflestir(false);
     }
 
-    // =========================================
+    // ============================================================
 
     IEnumerator IlacHatirlatmaDongusu()
     {
@@ -139,12 +118,10 @@ public class ScenarioManager : MonoBehaviour
         }
     }
 
-    // =========================================
+    // ============================================================
 
     void IlacVaktiBildirimi()
     {
-        YeniSenaryo();
-
         BildirimGoster(
             "Ýlaç alma zamaný!\nNe yapmak istersiniz?",
             bildirimRenk
@@ -156,9 +133,9 @@ public class ScenarioManager : MonoBehaviour
         ButonlariAktiflestir(true);
     }
 
-    // =========================================
+    // ============================================================
     // ILAC AL
-    // =========================================
+    // ============================================================
 
     public void IlacAl()
     {
@@ -175,10 +152,6 @@ public class ScenarioManager : MonoBehaviour
         if (kararPanel != null)
             kararPanel.SetActive(false);
 
-        // =====================================
-        // TARIH + SAAT KAYDET
-        // =====================================
-
         string tarihSaat =
             DateTime.Now.ToString(
                 "dd.MM.yyyy - HH:mm"
@@ -191,15 +164,13 @@ public class ScenarioManager : MonoBehaviour
 
         PlayerPrefs.Save();
 
-        gecmisText.text =
-            "Son ilaç:" + tarihSaat;
-
-        // =====================================
+        if (gecmisText != null)
+        {
+            gecmisText.text =
+                "Son ilaç: " + tarihSaat;
+        }
 
         kacirdi = 0;
-
-        riskText.text =
-            "Ýlaç zamanýnda alýndý.";
 
         BildirimGoster(
             "Ýlacýnýzý aldýnýz!\nKaraciðer saðlýklý.",
@@ -207,9 +178,9 @@ public class ScenarioManager : MonoBehaviour
         );
     }
 
-    // =========================================
+    // ============================================================
     // ILAC ATLAMA
-    // =========================================
+    // ============================================================
 
     public void IlacAtla()
     {
@@ -228,15 +199,8 @@ public class ScenarioManager : MonoBehaviour
 
         kacirdi++;
 
-        // =====================================
-        // RISK SISTEMI
-        // =====================================
-
         if (kacirdi >= 2)
         {
-            riskText.text =
-                "Organ reddi riski artýyor!";
-
             BildirimGoster(
                 "Ýlaç tekrar atlandý!\nOrgan reddi riski artýyor!",
                 new Color(0.89f, 0.2f, 0.2f, 0.95f)
@@ -244,9 +208,6 @@ public class ScenarioManager : MonoBehaviour
         }
         else
         {
-            riskText.text =
-                "Ýlaç gecikti!";
-
             BildirimGoster(
                 "Ýlaç alýnmadý!\nKaraciðer risk altýnda.",
                 new Color(0.89f, 0.29f, 0.29f, 0.95f)
@@ -254,21 +215,7 @@ public class ScenarioManager : MonoBehaviour
         }
     }
 
-    // =========================================
-
-    void YeniSenaryo()
-    {
-        int randomIndex =
-            UnityEngine.Random.Range(
-                0,
-                senaryolar.Length
-            );
-
-        senaryoText.text =
-            senaryolar[randomIndex];
-    }
-
-    // =========================================
+    // ============================================================
 
     void SifirlaVeDevam()
     {
@@ -277,9 +224,9 @@ public class ScenarioManager : MonoBehaviour
         HerSeyleriGizle();
     }
 
-    // =========================================
+    // ============================================================
     // BILDIRIM
-    // =========================================
+    // ============================================================
 
     void BildirimGoster(string mesaj, Color renk)
     {
@@ -305,7 +252,7 @@ public class ScenarioManager : MonoBehaviour
             StartCoroutine(FadeGoster());
     }
 
-    // =========================================
+    // ============================================================
 
     IEnumerator FadeGoster()
     {
@@ -334,7 +281,7 @@ public class ScenarioManager : MonoBehaviour
         cg.alpha = 1f;
     }
 
-    // =========================================
+    // ============================================================
 
     void ButonlariAktiflestir(bool durum)
     {
@@ -345,7 +292,7 @@ public class ScenarioManager : MonoBehaviour
             butonB.interactable = durum;
     }
 
-    // =========================================
+    // ============================================================
 
     void LiverRengi(Color renk)
     {
@@ -360,7 +307,7 @@ public class ScenarioManager : MonoBehaviour
         }
     }
 
-    // =========================================
+    // ============================================================
 
     void RenkSifirla()
     {
