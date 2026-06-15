@@ -98,6 +98,10 @@ Uygulama Android cihazda test edilmiştir.
 
 Proje demo videosu repoda ana dizinde `Demo_video.mp4` dosyası olarak bulunmaktadır.
 
+Ayrıca demo video YouTube Shorts üzerinden de izlenebilir:
+
+[APPLIVER Demo Video - YouTube Shorts](https://youtube.com/shorts/Sv1axtOP8eg?feature=share)
+
 Videoda uygulamanın Dashboard, Günlük Bakım, Tedavi Takvimi ve AR Simülasyon bölümleri gösterilmektedir.
 
 ## Kullanılan Teknolojiler
