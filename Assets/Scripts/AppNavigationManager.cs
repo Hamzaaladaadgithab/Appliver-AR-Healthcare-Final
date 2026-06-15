@@ -22,6 +22,9 @@ public class AppNavigationManager : MonoBehaviour
     [Tooltip("Doktor geçmişi ekrani")]
     public GameObject doctorHistoryScreen;
 
+    [Tooltip("Tedavi takvimi ekrani")]
+    public GameObject treatmentCalendarScreen;
+
     private GameObject gameplayCanvas;
 
     void Awake()
@@ -45,10 +48,13 @@ public class AppNavigationManager : MonoBehaviour
         BindButton(dashboardScreen, "ARButonu", ShowARSimulation);
         BindButton(dashboardScreen, "DailyButonu", ShowDailyCare);
         BindButton(dashboardScreen, "HikayeButonu", ShowPatientInfo);
+
+        treatmentCalendarScreen = TreatmentCalendarController.EnsureScreen(transform, this);
+        RenameButtonText(dashboardScreen, "DoctorHistoryButonu", "Tedavi Takvimi");
         
         BindButton(arSimulationScreen, "GeriButonu", ShowDashboard);
         BindButton(dailyCareScreen, "GeriButonu", ShowDashboard);
-        BindButton(dashboardScreen, "DoctorHistoryButonu", ShowDoctorHistory);
+        BindButton(dashboardScreen, "DoctorHistoryButonu", ShowTreatmentCalendar);
         BindButton(doctorHistoryScreen, "GeriButonu", ShowDashboard);
 
         // Mevcut AR sahnesindeki "Ana Panele Dön" butonunu otomatik olarak bagla
@@ -101,6 +107,20 @@ public class AppNavigationManager : MonoBehaviour
             if (found != null) return found;
         }
         return null;
+    }
+
+    private void RenameButtonText(GameObject screen, string buttonName, string label)
+    {
+        if (screen == null) return;
+
+        Transform btnTransform = FindRecursive(screen.transform, buttonName);
+        if (btnTransform == null) return;
+
+        TMPro.TextMeshProUGUI tmpText = btnTransform.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        if (tmpText != null)
+        {
+            tmpText.text = label;
+        }
     }
 
     /// <summary>
@@ -183,6 +203,18 @@ public class AppNavigationManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Tedavi Takvimi ekranını aktif eder, diğerlerini gizler.
+    /// </summary>
+    public void ShowTreatmentCalendar()
+    {
+        HideAllScreens();
+        if (treatmentCalendarScreen != null)
+        {
+            treatmentCalendarScreen.SetActive(true);
+        }
+    }
+
+    /// <summary>
     /// Tüm yeni ekran panellerini inaktif (deaktif) duruma getirir.
     /// </summary>
     public void HideAllScreens()
@@ -193,6 +225,7 @@ public class AppNavigationManager : MonoBehaviour
         if (arSimulationScreen != null) arSimulationScreen.SetActive(false);
         if (dailyCareScreen != null) dailyCareScreen.SetActive(false);
         if (doctorHistoryScreen != null) doctorHistoryScreen.SetActive(false);
+        if (treatmentCalendarScreen != null) treatmentCalendarScreen.SetActive(false);
 
         // Hide gameplay Canvas for AR UI on other screens
         if (gameplayCanvas != null)
