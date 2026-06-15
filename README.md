@@ -1,5 +1,15 @@
 # APPLIVER - Karaciğer Nakli Hastaları İçin Mobil AR Eğitim ve Takip Uygulaması
 
+## Öğrenci Bilgileri
+
+**Ad Soyad:** Hamza ALadaad
+**Öğrenci No:** 220541611
+**Öğrenci E-posta:** [220541611@firat.edu.tr](mailto:220541611@firat.edu.tr)
+**Üniversite:** Fırat Üniversitesi
+**Bölüm:** Yazılım Mühendisliği
+
+---
+
 APPLIVER, karaciğer nakli hastaları ve hasta yakınları için geliştirilmiş Unity tabanlı mobil bir eğitim ve takip uygulamasıdır. Proje, hastaların tedavi sürecini daha iyi anlamasına, günlük bakım görevlerini takip etmesine ve artırılmış gerçeklik destekli 3D karaciğer simülasyonu ile eğitim almasına yardımcı olmayı amaçlar.
 
 ## Projenin Amacı
@@ -65,6 +75,31 @@ gösterilmektedir.
 
 Tedavi Takvimi gerçek veritabanı, Firebase veya gerçek tıbbi doz hesaplama sistemi kullanmaz. Amaç, uygulamanın takip ve hatırlatma mantığını göstermektir.
 
+## APK Dosyası
+
+Uygulamanın Android APK dosyası GitHub Release üzerinden indirilebilir.
+
+[APPLIVER Final APK İndir](https://github.com/Hamzaaladaadgithab/Appliver-AR-Healthcare-Final/releases/tag/v1.0.0)
+
+Uygulama Android cihazda test edilmiştir.
+
+### APK Kurulum Adımları
+
+1. Yukarıdaki APK linkine tıklayın.
+2. Release sayfasından APK dosyasını indirin.
+3. Android telefonda bilinmeyen kaynaklardan yüklemeye izin verin.
+4. APK dosyasını açıp yükleyin.
+5. APPLIVER uygulamasını çalıştırın.
+6. AR simülasyon için kamerayı ImageTarget üzerine tutun.
+
+> Not: Uygulama demo/eğitim amaçlıdır ve gerçek tıbbi karar vermez.
+
+## Demo Video
+
+Proje demo videosu repoda ana dizinde `Demo_video.mp4` dosyası olarak bulunmaktadır.
+
+Videoda uygulamanın Dashboard, Günlük Bakım, Tedavi Takvimi ve AR Simülasyon bölümleri gösterilmektedir.
+
 ## Kullanılan Teknolojiler
 
 * Unity 2022.3 LTS
@@ -97,7 +132,7 @@ Tedavi Takvimi gerçek veritabanı, Firebase veya gerçek tıbbi doz hesaplama s
 
 ## GitHub Repo Yapısı
 
-Ders gereksinimlerine göre repoda aşağıdaki dosyalar bulunmalıdır:
+Ders gereksinimlerine göre repoda aşağıdaki dosyalar bulunmaktadır:
 
 ```text
 /docs
@@ -134,7 +169,7 @@ Demo_video.mp4
 
 Bu proje THS 7’ye yakın çalışan bir sistem prototipi olarak değerlendirilebilir.
 
-Verilen puan: 80
+**Verilen puan:** 80
 
 Gerekçe:
 
@@ -157,19 +192,15 @@ Gerekçe:
 Sunum sırasında önerilen demo akışı:
 
 1. Uygulamayı Android telefonda açma
-2. Splash ekranı
-3. Hasta hikayesi ekranı
-4. Dashboard ekranı
-5. Günlük bakım ekranı
-6. Tedavi Takvimi ekranı
-7. AR simülasyon ekranı
-8. ImageTarget ile 3D karaciğer modelini gösterme
-9. Ana ekrana dönüş
+2. Dashboard ekranı
+3. Günlük bakım ekranı
+4. Tedavi Takvimi ekranı
+5. AR simülasyon ekranı
+6. ImageTarget ile 3D karaciğer modelini gösterme
+7. Ana ekrana dönüş
 
 ## Geliştirici
 
-Hamza ALADAAD
-
+Hamza ALadaad
 Fırat Üniversitesi
-
-Yazılım Mühendisliği 
+Yazılım Mühendisliği
