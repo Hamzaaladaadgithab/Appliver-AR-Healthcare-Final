@@ -1,83 +1,175 @@
+# APPLIVER - Karaciğer Nakli Hastaları İçin Mobil AR Eğitim ve Takip Uygulaması
 
-# AR-Karaciğer: Karaciğer Nakli Hastaları İçin Mobil Artırılmış Gerçeklik Eğitim Sistemi
+APPLIVER, karaciğer nakli hastaları ve hasta yakınları için geliştirilmiş Unity tabanlı mobil bir eğitim ve takip uygulamasıdır. Proje, hastaların tedavi sürecini daha iyi anlamasına, günlük bakım görevlerini takip etmesine ve artırılmış gerçeklik destekli 3D karaciğer simülasyonu ile eğitim almasına yardımcı olmayı amaçlar.
 
-Bu proje, karaciğer nakli operasyonu geçirmiş hastaların taburculuk sonrası adaptasyon süreçlerini desteklemek,
-ilaç uyumlarını maksimize etmek ve olası komplikasyonları erken safhada tespit edebilmelerini sağlamak amacıyla tasarlanmış,
-interaktif bir **Mobil Artırılmış Gerçeklik (AR)** eğitim sistemidir. 
+## Projenin Amacı
 
+Bu projenin amacı, karaciğer nakli sürecindeki hastalara ve hasta yakınlarına mobil ortamda eğitim ve takip desteği sağlamaktır. Uygulama; hasta hikayesi, günlük bakım, tedavi takvimi ve AR karaciğer simülasyonu ile kullanıcıya daha anlaşılır ve etkileşimli bir deneyim sunar.
 
-Geleneksel broşür ve sözlü bilgilendirme yöntemlerinin yetersiz kaldığı noktalarda, hastaların soyut tıbbi kavramları somutlaştırarak öğrenmesini sağlayan bu sistem; Unity 2022 oyun motoru,
-Vuforia Engine AR SDK'sı ve veri yönetimi için Firebase altyapısı kullanılarak hayata geçirilmektedir.
+> Not: Bu uygulama gerçek tıbbi karar vermez. Tedavi takvimindeki veriler demo amaçlıdır. Gerçek kullanımda ilaç saatleri ve tedavi planı doktor reçetesine göre belirlenmelidir.
 
+## Kullanıcılar
 
+* Karaciğer nakli hastaları
+* Hasta yakınları
+* Bakım veren kişiler
+* Sağlık eğitimi alan öğrenciler
+* Karaciğer nakli süreci hakkında bilgi almak isteyen kullanıcılar
 
-##  Temel Özellikler
-* **Etkileşimli 3B Karaciğer Modeli:** Hasta kararlarına göre anlık görsel tepki veren (renk değişimi: sağlıklı/hasarlı) dinamik organ simülasyonu.
-* **Klinik Karar Senaryoları:** İlaç yönetimi ve komplikasyon belirtilerine yönelik, uzman onaylı çoktan seçmeli karar ağaçları.
-* **Gerçek Zamanlı Veri Senkronizasyonu:** Firebase entegrasyonu ile hastaların senaryo bazlı performanslarının ve oturum loglarının (Session Logs) anlık olarak buluta aktarılması.
-* **Yönetici (Admin) Paneli:** Doktorların ve sağlık profesyonellerinin, hastaların gelişim süreçlerini, skorlarını ve yaptıkları hataları takip edebileceği özel yetkilendirilmiş arayüz.
+## Temel Özellikler
 
+* Hasta hikayesi ekranı
+* Dashboard / ana kontrol paneli
+* Günlük bakım takip ekranı
+* Tedavi Takvimi ekranı
+* Demo ilaç ve kontrol hatırlatmaları
+* Vuforia destekli AR karaciğer simülasyonu
+* 3D karaciğer modeli görüntüleme
+* AR eğitim senaryosu
+* Skor, doğru ve yanlış cevap takibi
+* Android cihaz üzerinde çalışma
 
+## Güncel Ekran Yapısı
 
-## 📌 Sistem Tasarımı ve İşleyiş Mimarisi
-Kullanıcıların karaciğer anatomisini ve klinik hasta senaryolarını uygulamalı olarak deneyimlemelerine olanak tanıyan sistemin genel akış diyagramı,
-projenin temel hedefleri ve teknolojik altyapısı aşağıda sunulmuştur.
+* Splash Screen
+* Patient Story Screen
+* Dashboard Screen
+* Daily Care Screen
+* Treatment Calendar Screen
+* AR Simulation Screen
+* Doctor History Screen
 
-<img width="1365" height="751" alt="sistem mimarisi " src="https://github.com/user-attachments/assets/51aa80e6-5943-492e-b942-660128949f64" />
+## Uygulama Akışı
 
+1. Kullanıcı uygulamayı açar.
+2. Splash ekranından hasta hikayesi ekranına geçer.
+3. Hasta hikayesi ile karaciğer nakli süreci hakkında bilgi alır.
+4. Dashboard ekranına geçer.
+5. Günlük bakım ekranında görevlerini takip eder.
+6. Tedavi Takvimi ekranında demo hatırlatmaları görür.
+7. AR Simülasyon ekranına geçer.
+8. Kamera ImageTarget algıladığında 3D karaciğer modeli görüntülenir.
+9. Kullanıcı AR ortamında eğitim alır.
 
+## Tedavi Takvimi
 
+Tedavi Takvimi ekranı demo veri ile çalışmaktadır. Bu ekranda örnek olarak:
 
-##  Katmanlı Sistem Mimarisi
-Uygulama, sürdürülebilirlik ve bağımsızlık ilkeleri gereği üç ana bileşenin entegre çalıştığı modüler bir mimari (N-Tier Architecture) üzerine inşa edilmiştir:
-1. **Sunum Katmanı (UI Katmanı):** Kullanıcı arayüzleri, menüler ve istatistik ekranları.
-2. **İş Mantığı ve AR Katmanı (Senaryo Motoru):** Vuforia Engine ile görüntü işleme, marker tanıma ve 3B obje etkileşimlerinin yönetildiği alan.
-3. **Veri Katmanı (Backend):** Firebase Authentication ile güvenli kimlik doğrulama ve Cloud Firestore (NoSQL) ile JSON tabanlı senaryo/log yönetimi.
+* İlaç hatırlatması
+* Su tüketimi kontrolü
+* Ateş ölçümü
+* Yaklaşan doktor kontrolleri
+* Geçmiş doktor kayıtları
 
-<img width="1536" height="1024" alt="sistemtasarımı" src="https://github.com/user-attachments/assets/16752b35-141c-4965-8579-07d9e81bd985" />
+gösterilmektedir.
 
+Tedavi Takvimi gerçek veritabanı, Firebase veya gerçek tıbbi doz hesaplama sistemi kullanmaz. Amaç, uygulamanın takip ve hatırlatma mantığını göstermektir.
 
+## Kullanılan Teknolojiler
 
+* Unity 2022.3 LTS
+* C#
+* Vuforia Engine
+* TextMeshPro
+* Android Build
+* Git & GitHub
 
+## Önemli Scriptler
 
+| Dosya                          | Görevi                                         |
+| ------------------------------ | ---------------------------------------------- |
+| AppNavigationManager.cs        | Ekranlar arası geçişleri yönetir               |
+| TreatmentCalendarController.cs | Tedavi Takvimi ekranını ve butonlarını yönetir |
+| DailyCareController.cs         | Günlük bakım görevlerini takip eder            |
+| ScenarioManager.cs             | AR eğitim senaryolarını yönetir                |
+| ScoreManager.cs                | Skor, doğru ve yanlış değerlerini yönetir      |
+| RotateLiver.cs                 | 3D karaciğer modelinin dönmesini sağlar        |
 
-## 🛠️ Kullanılan Teknolojiler
-* **Oyun Motoru & Ortam:** Unity 2022.3 LTS
-* **Programlama Dili:** C# (Nesne Yönelimli Programlama)
-* **AR Altyapısı:** Vuforia Engine SDK
-* **Backend & Veritabanı:** Firebase Auth, Cloud Firestore
-* **Versiyon Kontrol:** Git & GitHub
+## Kurulum ve Çalıştırma
 
-## 🛡️ Güvenilirlik ve Sürdürülebilirlik (RAMS İlkeleri)
-Projenin yazılım altyapısı, mühendislik standartlarına tam uyumlu olarak; sistemin hatasız çalışmasını ifade eden **Güvenilirlik (Reliability)**, 
-çevrimdışı mod destekli **Erişilebilirlik (Availability)**, modüler kod yapısıyla **Bakım Yapılabilirlik (Maintainability)** ve hastayı yanlış yönlendirmeyen **Emniyet (Safety)** ilkeleri ekseninde projelendirilmiştir.
+1. Proje Unity 2022.3 LTS ile açılır.
+2. `Assets/Scenes/SampleScene.unity` sahnesi açılır.
+3. Build Settings üzerinden platform Android olarak seçilir.
+4. Android cihaz USB ile bilgisayara bağlanır.
+5. USB Debugging ve Install via USB ayarları aktif edilir.
+6. Build And Run ile uygulama telefona yüklenir.
+7. AR simülasyon için kamera ImageTarget üzerine tutulur.
 
-<img width="1254" height="1254" alt="RAMS" src="https://github.com/user-attachments/assets/4989296f-8169-44dc-9072-15ff1f03094b" />
+## GitHub Repo Yapısı
 
+Ders gereksinimlerine göre repoda aşağıdaki dosyalar bulunmalıdır:
 
+```text
+/docs
+   SWOT.pdf
+   RAMS.pdf
+   THS_report.pdf
+   Requirements.pdf
+   UserScenario.pdf
 
+README.md
+Trello_link.txt
+Demo_video.mp4
+```
 
+## SWOT Özeti
 
-## 📊 Stratejik Değerlendirme: SWOT Analizi
+| Başlık       | Açıklama                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------- |
+| Güçlü Yönler | AR destekli eğitim, mobil kullanım, sade arayüz, günlük takip                            |
+| Zayıf Yönler | Gerçek veritabanı yok, tedavi takvimi demo veridir, gerçek tıbbi karar vermez            |
+| Fırsatlar    | Gerçek bildirim sistemi, doktor-hasta iletişimi ve veritabanı eklenebilir                |
+| Tehditler    | Yaşlı kullanıcıların zorlanması, cihaz uyumluluğu ve tıbbi bilgilerin yanlış anlaşılması |
 
-1.	•  Güçlü Yönler: Unity ve C# bilgisi, AR deneyimi, Etkileşimli yapı 
-2.	•  Zayıf Yönler: 3D model bağımlılığı, Tek geliştirici, Zaman kısıtı 
-3.	•  Fırsatlar: AR eğitim uygulamalarının artması, Sağlık teknolojisi yenilikleri 
-4.	•  Tehditler: Cihaz uyumsuzluğu, Performans sorunları, Kamera farkları
+## RAMS Özeti
 
-<img width="1254" height="1254" alt="SOWTanalizi" src="https://github.com/user-attachments/assets/48515348-69e3-4418-aa38-efdb37621658" />
+| RAMS            | Projeye Göre Açıklama                                                      |
+| --------------- | -------------------------------------------------------------------------- |
+| Reliability     | Uygulama ekranları ve AR simülasyon stabil çalışmalıdır                    |
+| Availability    | Uygulama Android telefonda kolayca kullanılabilir olmalıdır                |
+| Maintainability | Kodlar ayrı scriptler halinde düzenlendiği için geliştirilebilir yapıdadır |
+| Safety          | Uygulama gerçek tıbbi karar vermez ve ilaç dozu belirlemez                 |
 
+## THS Değerlendirmesi
 
+Bu proje THS 7’ye yakın çalışan bir sistem prototipi olarak değerlendirilebilir.
 
+Verilen puan: 80
 
----
-**Geliştirici:** Hamza Aladaad (Backend Developer / Fırat Üniversitesi Yazılım Mühendisliği)
+Gerekçe:
 
+* Uygulama Android cihazda çalışmaktadır.
+* Vuforia ile AR karaciğer simülasyonu yapılmaktadır.
+* Temel ekranlar ve modüller çalışmaktadır.
+* Canlı demo yapılabilir durumdadır.
+* Ancak gerçek hastane sistemi, gerçek veritabanı ve klinik kullanım olmadığı için THS 8 veya THS 9 seviyesinde değildir.
 
+## Sınırlılıklar
 
+* Tedavi Takvimi demo veri kullanır.
+* Gerçek tıbbi karar vermez.
+* Gerçek veritabanı bağlantısı yoktur.
+* Firebase veya harici sağlık sistemi entegrasyonu yoktur.
+* Klinik kullanım için doktor onayı, güvenli veri yönetimi ve kapsamlı testler gerekir.
 
+## Demo Sırası
 
+Sunum sırasında önerilen demo akışı:
 
+1. Uygulamayı Android telefonda açma
+2. Splash ekranı
+3. Hasta hikayesi ekranı
+4. Dashboard ekranı
+5. Günlük bakım ekranı
+6. Tedavi Takvimi ekranı
+7. AR simülasyon ekranı
+8. ImageTarget ile 3D karaciğer modelini gösterme
+9. Ana ekrana dönüş
 
+## Geliştirici
 
-[KARACİĞER_NAKLİ_HASTASI_MOBİL_AR_EĞİTİM_SİSTEMİ.docx](https://github.com/user-attachments/files/27486239/KARACIGER_NAKLI_HASTASI_MOBIL_AR_EGITIM_SISTEMI.docx)
+Hamza ALADAAD
+
+Fırat Üniversitesi
+
+Yazılım Mühendisliği 
